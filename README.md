@@ -9,10 +9,8 @@ Class: HTML
 | span | **a inline content container** |
 | hr | a horizontal line |
 | br | line break |
-| sup | super script, 
-small text on top of regular text |
-| sub | sub script,
-small text on bottom of regular text |
+| sup | super script, small text on top of regular text |
+| sub | sub script, small text on bottom of regular text |
 | Entity | special characters |
 
 Use Semantic Element
