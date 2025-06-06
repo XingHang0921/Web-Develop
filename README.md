@@ -7,7 +7,6 @@ Class: HTML
 <table>
   <tr>
     <td>
-
 - [x] Section 1  
 - [x] Section 2  
 - [x] Section 3  
@@ -24,12 +23,10 @@ Class: HTML
 - [ ] Section 14  
 - [ ] Section 15  
 - [ ] Section 16  
-- [ ] Section 17  
-
-</td><td>
-
+- [ ] Section 17
 - [ ] Section 18  
 - [ ] Section 19  
+</td><td>
 - [ ] Section 20  
 - [ ] Section 21  
 - [ ] Section 22  
@@ -43,14 +40,13 @@ Class: HTML
 - [ ] Section 30  
 - [ ] Section 31  
 - [ ] Section 32  
-- [ ] Section 33  
-
-</td><td>
-
+- [ ] Section 33 
 - [ ] Section 34  
 - [ ] Section 35  
 - [ ] Section 36  
 - [ ] Section 37  
+
+</td><td>
 - [ ] Section 38  
 - [ ] Section 39  
 - [ ] Section 40  
@@ -62,17 +58,16 @@ Class: HTML
 - [ ] Section 46  
 - [ ] Section 47  
 - [ ] Section 48  
-- [ ] Section 49  
-
-</td><td>
-
+- [ ] Section 49
 - [ ] Section 50  
 - [ ] Section 51  
 - [ ] Section 52  
 - [ ] Section 53  
 - [ ] Section 54  
 - [ ] Section 55  
-- [ ] Section 56  
+- [ ] Section 56   
+
+</td><td>
 - [ ] Section 57  
 - [ ] Section 58  
 - [ ] Section 59  
