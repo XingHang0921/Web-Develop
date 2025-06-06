@@ -27,7 +27,6 @@ Class: HTML
             - [ ] Section 18  
             - [ ] Section 19  
         </td>
-
         <td>
             - [ ] Section 20  
             - [ ] Section 21  
@@ -48,7 +47,6 @@ Class: HTML
             - [ ] Section 36  
             - [ ] Section 37  
         </td>
-
         <td>
             - [ ] Section 38  
             - [ ] Section 39  
@@ -69,9 +67,7 @@ Class: HTML
             - [ ] Section 54  
             - [ ] Section 55  
             - [ ] Section 56   
-
-        </td>
-        
+        </td>        
         <td>
             - [ ] Section 57  
             - [ ] Section 58  
