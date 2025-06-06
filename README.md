@@ -3,10 +3,7 @@
 Checkbox (1): No
 Created: June 2, 2025 5:03 PM
 Class: HTML
-
-<table>
-    <tr>
-        <td>
+### Column 1
             - [x] Section 1  
             - [x] Section 2  
             - [x] Section 3  
@@ -26,8 +23,7 @@ Class: HTML
             - [ ] Section 17
             - [ ] Section 18  
             - [ ] Section 19  
-        </td>
-        <td>
+### Column 2
             - [ ] Section 20  
             - [ ] Section 21  
             - [ ] Section 22  
@@ -46,8 +42,8 @@ Class: HTML
             - [ ] Section 35  
             - [ ] Section 36  
             - [ ] Section 37  
-        </td>
-        <td>
+### Column 3
+
             - [ ] Section 38  
             - [ ] Section 39  
             - [ ] Section 40  
@@ -67,8 +63,7 @@ Class: HTML
             - [ ] Section 54  
             - [ ] Section 55  
             - [ ] Section 56   
-        </td>        
-        <td>
+### Column 4
             - [ ] Section 57  
             - [ ] Section 58  
             - [ ] Section 59  
@@ -88,9 +83,7 @@ Class: HTML
             - [ ] Section 73  
             - [ ] Section 74  
             - [ ] Section 75  
-        </td>
-    </tr>
-</table>
+
 
 | **HTML** | **Cheat sheet** |
 | --- | --- |
