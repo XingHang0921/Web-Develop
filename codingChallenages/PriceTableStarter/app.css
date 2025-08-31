@@ -1,0 +1,65 @@
+html{
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    background-color: #A9FFF7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.panel{
+    background-color: white;
+    border:1px outset black;
+    display: flex;
+    flex-direction: row;
+    border-radius: 0.25em;
+    height: 40%;
+    width: 75%;
+}
+
+.pricing-plan{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 33.333%;
+}
+.pricing-features{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: None;
+}
+.pricing-img{
+    object-fit: cover;
+    height: 35%;
+    width: 50%;
+}
+.pricing-features-item{
+    font-size: large;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5em;
+}
+h2{
+    border-bottom: 1px solid #ccc;
+    padding: 0.5em;
+
+}
+
+.pricing-price{
+    font-size: xx-large;
+    color: aqua;
+}
+.pricing-button{
+    border:1px solid aqua;
+    padding: 0.5em 2em;
+    text-decoration: None;
+    text-transform: uppercase;
+    color: aqua;
+    border-radius: 15px;
+    margin-top: 1em;
+}
