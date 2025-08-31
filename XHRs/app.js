@@ -11,3 +11,4 @@ req.onerror = function(){
 }
 req.open("GET", "https://swapi.info/api/people/1")
 req.send();
+//old way of getting json data
