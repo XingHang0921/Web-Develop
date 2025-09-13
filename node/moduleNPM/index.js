@@ -1,6 +1,4 @@
-const blue = require('./blue')
-const janet = require('./janet')
-const sadie = require('./sadie')
+const cats = require('./shelter')
 
-const allCats = [blue, janet, sadie]
-console.log(allCats)
+
+console.log(cats)
