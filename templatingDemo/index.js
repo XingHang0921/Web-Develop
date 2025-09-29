@@ -15,6 +15,12 @@ app.get('/random', (req,res)=>{
     res.render('random', {rand: num})
 })
 
+app.get('/cats', (req, res)=> {
+    const cats = ['Blue','red','orange','monty','winston'
+    ]
+    res.render('cats',{cats})
+})
+
 app.get('/r/:subreddit', (req,res)=>{
     const {subreddit} = req.params;
     res.render('subreddit', {subreddit});
