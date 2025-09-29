@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
 const path = require('path')
+const redditData = require('./data.json')
 
 app.set('view engine', 'ejs'); //tell app to use ejs
 app.set('views', path.join(__dirname, 'views')) 
@@ -23,7 +24,8 @@ app.get('/cats', (req, res)=> {
 
 app.get('/r/:subreddit', (req,res)=>{
     const {subreddit} = req.params;
-    res.render('subreddit', {subreddit});
+    const data = redditData[subreddit];
+    res.render('subreddit', {...data});
 })
 
 app.listen(3000, ()=>{
