@@ -49,20 +49,23 @@ app.get('/comments/:id', (req, res)=>{
     res.render('comments/show',{comment})
 })
 
-
-
+app.get('/comments/:id/edit', (req, res)=>{
+    const {id} = req.params;
+    const comment = comments.find(c => c.id === id)
+    res.render('comments/edit', {comment})
+})
 app.post('/comments', (req, res)=>{
     const {username, comment} = req.body
     comments.push({username, comment, id:uuid()})
     res.redirect('/comments');
 })
-app.get('/tacos', (req, res) =>{
-    res.send('get /tacos response')
-})
 
-app.post('/tacos', (req,res)=>{
-    console.log(req.body)
-    res.send(`get post response`)
+app.patch('/comments/:id', (req, res)=>{
+    const {id} = req.params;
+    const newCommentText = req.body.comment;
+    const foundComment = comments.find(c => c.id === id)
+    foundComment.comment = newCommentText;
+    res.redirect('/comments')
 })
 app.listen(3000, ()=>{
     console.log('on port 3000')
