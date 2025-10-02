@@ -1,12 +1,41 @@
 const express = require('express')
 const app = express();
-[
+const path = require('path')
 
-]
+app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.set('views', path.join(__dirname,'views'))
 
-app.get('/')
+const comments = [
+    {
+        username: 'Todd',
+        comment:'so funndy'
+    },
+    {
+        username: 'Tasddd',
+        comment:'good ndy'
+    },
+    {
+        username: 'odd',
+        comment:'not funndy'
+    },
+    {
+        username: 'aswd',
+        comment:'bad nndy'
+    },
+]
+app.get('/comments', (req, res)=>{
+    res.render('comments/index.ejs',{comments})
+})
+app.get('/comments/new',(req,res) =>{
+    res.render('comments/new')
+})
+
+app.post('/comments', (req, res)=>{
+    console.log(req.body)
+    res.send('post route is working')
+})
 app.get('/tacos', (req, res) =>{
     res.send('get /tacos response')
 })
