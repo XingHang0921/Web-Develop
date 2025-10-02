@@ -1,0 +1,9 @@
+# Dependencies
+/node_modules
+
+# Environment variables
+.env
+
+# Optional lock & package files (only if you don’t want them in Git)
+/package-lock.json
+/yarn.lock

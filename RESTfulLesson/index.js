@@ -33,8 +33,9 @@ app.get('/comments/new',(req,res) =>{
 })
 
 app.post('/comments', (req, res)=>{
-    console.log(req.body)
-    res.send('post route is working')
+    const {username, comment} = req.body
+    comments.push({username, comment})
+    res.redirect('/comments');
 })
 app.get('/tacos', (req, res) =>{
     res.send('get /tacos response')
