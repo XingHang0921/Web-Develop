@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
 const path = require('path')
+const {v4 : uuid} = require('uuid')
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended:true}))
@@ -9,22 +10,22 @@ app.set('views', path.join(__dirname,'views'))
 
 const comments = [
     {
-        id:'1',
+        id:uuid(),
         username: 'Todd',
         comment:'so funndy'
     },
     {
-        id:'2',
+        id:uuid(),
         username: 'Tasddd',
         comment:'good ndy'
     },
     {
-        id:'3',
+        id:uuid(),
         username: 'odd',
         comment:'not funndy'
     },
     {
-        id:'4',
+        id:uuid(),
         username: 'aswd',
         comment:'bad nndy'
     },
@@ -32,21 +33,27 @@ const comments = [
 app.get('/comments', (req, res)=>{
     res.render('comments/index.ejs',{comments})
 })
-
-app.get('/comments/:id', (req, res)=>{
-    const {id} = req.params;
-    const comment = comments.find(c => c.id === id)
-    res.render('comments/show',{comment})
-})
-
 app.get('/comments/new',(req,res) =>{
     res.render('comments/new')
 })
 
+app.get('/comments/:id', (req, res)=>{
+    const {id} = req.params;
+     console.log("Requested ID:", id);
+    console.log("All comments:", comments);
+    const comment = comments.find(c => c.id === id)
+    console.log("Matched comment:", comment);
+     if (!comment) {
+        return res.status(404).send('Comment not found');
+    }
+    res.render('comments/show',{comment})
+})
+
+
+
 app.post('/comments', (req, res)=>{
-    const id = Date.now().toString()
     const {username, comment} = req.body
-    comments.push({id, username, comment})
+    comments.push({username, comment, id:uuid()})
     res.redirect('/comments');
 })
 app.get('/tacos', (req, res) =>{
