@@ -9,18 +9,22 @@ app.set('views', path.join(__dirname,'views'))
 
 const comments = [
     {
+        id:'1',
         username: 'Todd',
         comment:'so funndy'
     },
     {
+        id:'2',
         username: 'Tasddd',
         comment:'good ndy'
     },
     {
+        id:'3',
         username: 'odd',
         comment:'not funndy'
     },
     {
+        id:'4',
         username: 'aswd',
         comment:'bad nndy'
     },
@@ -28,13 +32,21 @@ const comments = [
 app.get('/comments', (req, res)=>{
     res.render('comments/index.ejs',{comments})
 })
+
+app.get('/comments/:id', (req, res)=>{
+    const {id} = req.params;
+    const comment = comments.find(c => c.id === id)
+    res.render('comments/show',{comment})
+})
+
 app.get('/comments/new',(req,res) =>{
     res.render('comments/new')
 })
 
 app.post('/comments', (req, res)=>{
+    const id = Date.now().toString()
     const {username, comment} = req.body
-    comments.push({username, comment})
+    comments.push({id, username, comment})
     res.redirect('/comments');
 })
 app.get('/tacos', (req, res) =>{

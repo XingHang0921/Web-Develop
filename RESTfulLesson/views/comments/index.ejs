@@ -10,8 +10,9 @@
     <ul>
         <% for(let c of comments) { %>
             <li><%=c.comment%> - <b><%=c.username%></b></li>
-        <% }%>
+            <a href="/comments/<%=c.id%>">Detail</a>
+            <% }%>
     </ul>
-    comments
+    <a href="/comments/new"> New Comments</a>
 </body>
 </html>
