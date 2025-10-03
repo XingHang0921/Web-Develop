@@ -2,10 +2,12 @@ const express = require('express')
 const app = express();
 const path = require('path')
 const {v4 : uuid} = require('uuid')
+const methodOverride = require('method-override')
 
-app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(methodOverride('_method'))
+app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname,'views'))
 
 const comments = [
@@ -39,13 +41,7 @@ app.get('/comments/new',(req,res) =>{
 
 app.get('/comments/:id', (req, res)=>{
     const {id} = req.params;
-     console.log("Requested ID:", id);
-    console.log("All comments:", comments);
     const comment = comments.find(c => c.id === id)
-    console.log("Matched comment:", comment);
-     if (!comment) {
-        return res.status(404).send('Comment not found');
-    }
     res.render('comments/show',{comment})
 })
 
