@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
     price: {
         type:Number,
         require:true,
-        min:0,
+        min:[0, 'Price must be postive'],
     },
     categories: [],
     qty:{
@@ -28,13 +28,17 @@ const productSchema = new mongoose.Schema({
             type:Number,
             default:0
         }
-    }
+    },
+    size:{
+        type:String,
+        enum:['S','M','L'],
 
+    }
 })
 
 const Product = mongoose.model('Product', productSchema)
 
-const bike = new Product({name: 'Tire Pump', price:21})
+const bike = new Product({name: 'Cycling Jersey', price:221, size:'XS'})
 bike.save()
 Product.findOneAndUpdate({name:'Tire Pump'},{price:-9000},{new:true})
 .then(data =>{
