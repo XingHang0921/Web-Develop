@@ -35,16 +35,34 @@ const productSchema = new mongoose.Schema({
 
     }
 })
-
+productSchema.methods.greet = function() {
+    console.log('hello hihihihihi')
+    console.log(`- from ${this.name}`
+    )
+}
+productSchema.static.fireSale = function(){
+    return this.updateMany({}, {onSale:true, price:0})
+}
 const Product = mongoose.model('Product', productSchema)
 
-const bike = new Product({name: 'Cycling Jersey', price:221, size:'XS'})
-bike.save()
-Product.findOneAndUpdate({name:'Tire Pump'},{price:-9000},{new:true})
-.then(data =>{
-    console.log('it work ')
-    console.log(data)
-})
-.catch(err =>{
-    console.log(err)
-})
+const findProduct = async () => {
+    const foundProduct = await Product.findOne({name:'Bike Helmet'})
+    foundProduct.greet()
+}
+
+Product.fireSale()
+
+
+
+
+// const bike = new Product({name: 'Bike Helmet', price:221, size:'S'})
+// bike.save()
+// Product.findOneAndUpdate({name:'Bike Helmessst'},{price:9000},{new:true})
+// .then(data =>{
+//     console.log('it work ')
+//     console.log(data)
+// })
+// .catch(err =>{
+//     console.log(err)
+// })
+
