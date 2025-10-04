@@ -34,11 +34,12 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', productSchema)
 
-const bike = new Product({name: 'Mountain Bike', price:2123
-        , categories:['Cycleing', 'safety']})
+const bike = new Product({name: 'Tire Pump', price:21})
 bike.save()
+Product.findOneAndUpdate({name:'Tire Pump'},{price:-9000},{new:true})
 .then(data =>{
-    console.log('it work ' + data)
+    console.log('it work ')
+    console.log(data)
 })
 .catch(err =>{
     console.log(err)
