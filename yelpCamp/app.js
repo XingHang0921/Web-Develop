@@ -27,6 +27,10 @@ app.get('/campgrounds', async (req,res)=>{
     res.render('campgrounds/index', {campgrounds})
 })
 
+app.get('/campgrounds/:id', (req,res)=>{
+    res.render('/show')
+})
+
 app.listen(3000, ()=>{
     console.log('connect to host 3000')
 })
