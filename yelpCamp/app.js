@@ -21,10 +21,10 @@ app.get('/home', (req,res)=>{
     res.render('home')
 })
 
-app.get('/makeCampground', async (req,res)=>{
-    const camp = new Campground({title:'My BackYard'})
-    await camp.save();
-    res.send(camp)
+app.get('/campgrounds', async (req,res)=>{
+    const campgrounds = await Campground.find({})
+    console.log(campgrounds)
+    res.render('campgrounds/index', {campgrounds})
 })
 
 app.listen(3000, ()=>{
