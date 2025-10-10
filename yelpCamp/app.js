@@ -36,11 +36,17 @@ app.post('/campgrounds', async (req,res)=>{
     res.redirect('/campgrounds')
 })
 
+
 app.get('/campgrounds/:id', async (req,res)=>{
     const campground = await Campground.findById(req.params.id)
     res.render('campgrounds/show',{campground})
 })
 
+app.get('/campgrounds/:id/edit', async(req, res)=>{
+    const {id} = req.params;
+    const campground = await Campground.findById(id);
+    res.render('campgrounds/edit',{campground})
+})
 app.listen(3000, ()=>{
     console.log('connect to host 3000')
 })
