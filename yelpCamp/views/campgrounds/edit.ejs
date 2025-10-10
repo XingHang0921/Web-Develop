@@ -2,9 +2,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit</title>
 </head>
 <body>
     <h1>edit</h1>
+    <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+        <input type="text" name="campground[title]" id="title"
+        value="<%=campground.title%>">
+        <br>
+        <input type="number" name="campground[price]" id="price"
+        value="<%=campground.price%>">
+        <br>
+        <input type="text" name="campground[description]" id="description"
+        value="<%=campground.description%>">
+        <br>
+        <input type="text" name="campground[location]" id="location"
+        value="<%=campground.location%>">
+        <button>Submit</button>
+    </form>
+    <a href="/campgrounds/<%=campground._id%>">Back to Campground</a>
+
 </body>
 </html>
