@@ -1,10 +1,4 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campgrounds</title>
-</head>
-<body>
+<% layout('layouts/boilerplate')%>
     <h1>All Campgrounds</h1>
     <ul>
         <% for(let c of campgrounds) { %>
@@ -15,5 +9,4 @@
             <h2><%=campgrounds._id%></h2>
         <%}%>
     </ul>
-</body>
-</html>
+

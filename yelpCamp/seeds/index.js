@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Campground = require('../models/campGround')
 const cities = require('./cities')
 const {descriptors, places} = require('./seedHelpers')
+
 mongoose.connect('mongodb://localhost:27017/yelpCamp')
 
 const db = mongoose.connection;
@@ -21,6 +22,7 @@ const seedDB = async()=>{
         })
         await camp.save();
     }
+    console.log('seeeding complete')
 }
 
 seedDB().then(() =>{
