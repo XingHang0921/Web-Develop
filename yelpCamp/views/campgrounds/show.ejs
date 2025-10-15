@@ -3,7 +3,9 @@
     <h1>SHOW</h1>
     <h2><%=campground.title%></h2>
     <h3><%=campground.location%></h3>
+    <img src=<%=campground.image%> alt="campground image">
     <button><a href="/campgrounds/<%=campground._id%>/edit">Edit</a></button>
+    <p><%=campground.description%></p>
     <br>
     <p>
         <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
