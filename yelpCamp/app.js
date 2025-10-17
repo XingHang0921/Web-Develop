@@ -34,9 +34,14 @@ app.get('/campgrounds/new', (req, res) =>{
 })
 
 app.post('/campgrounds', async (req,res)=>{
-    const campground = new Campground(req.body)
-    await campground.save()
-    res.redirect('campgrounds')
+    try{
+        const campground = new Campground(req.body)
+        await campground.save()
+        res.redirect('campgrounds')
+    }catch(e){
+        next(e)
+    }
+    
 })
 
 app.get('/campgrounds/:id', async (req,res)=>{
@@ -62,6 +67,9 @@ app.delete('/campgrounds/:id', async(req, res)=>{
     res.redirect('/campgrounds')
 })
 
+app.use((err, req, res, next) => {
+    res.send('oh boy, something went wrong!')
+})
 
 app.listen(3000, ()=>{
     console.log('connect to host 3000')
