@@ -62,6 +62,7 @@ app.delete('/campgrounds/:id', async(req, res)=>{
     res.redirect('/campgrounds')
 })
 
+
 app.listen(3000, ()=>{
     console.log('connect to host 3000')
 })
