@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 const Campground = require('./models/campGround')
 const ejsMate = require('ejs-mate')
 const catchAsync = require('./utils/catchAsync')
+const ExpressError = require('./utils/ExpressError')
 mongoose.connect('mongodb://localhost:27017/yelpCamp')
 
 const db = mongoose.connection;
@@ -21,7 +22,7 @@ app.set('views', path.join(__dirname,'views'))
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 
-app.get('/home', (req,res)=>{
+app.get('/', (req,res)=>{
     res.render('home')
 })
 
@@ -35,10 +36,10 @@ app.get('/campgrounds/new', (req, res) =>{
 })
 
 app.post('/campgrounds', catchAsync(async (req,res)=>{
-        const campground = new Campground(req.body)
-        await campground.save()
-        res.redirect('campgrounds')
-    
+    if(!req.body.campground) throw new ExpressError('invaild Campground data', 400)
+    const campground = new Campground(req.body)
+    await campground.save()
+    res.redirect('campgrounds')
 }))
 
 app.get('/campgrounds/:id', catchAsync(async (req,res)=>{
@@ -64,8 +65,13 @@ app.delete('/campgrounds/:id', catchAsync(async(req, res)=>{
     res.redirect('/campgrounds')
 }))
 
+app.all(/(.*)/,(req, res, next) =>{
+    next(new ExpressError('Page Not Found', 404))
+})
+
 app.use((err, req, res, next) => {
-    res.send('oh boy, something went wrong!')
+    const {statusCode = 500, message = 'Something went wrong'} = err
+    res.status(statusCode).send(message)
 })
 
 app.listen(3000, ()=>{
