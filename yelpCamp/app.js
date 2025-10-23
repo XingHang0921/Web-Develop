@@ -35,7 +35,7 @@ const validateCampground = (req, res, next) => {
 
 
 app.get('/', (req,res)=>{
-    res.render('home')
+    res.render('campgrounds/home')
 })
 
 app.get('/campgrounds', catchAsync(async (req,res)=>{
