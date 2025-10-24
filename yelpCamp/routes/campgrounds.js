@@ -1,15 +1,9 @@
 const express = require('express')
 const router = express.Router();
-const path = require('path')
-const mongoose = require('mongoose')
-const methodOverride = require('method-override')
 const Campground = require('../models/campGround')
-const ejsMate = require('ejs-mate')
 const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
-const Joi = require('joi')
 const {campgroundSchema} = require('../schemas.js')
-
 
 const validateCampground = (req, res, next) => {
   const { error } = campgroundSchema.validate(req.body);
@@ -19,8 +13,6 @@ const validateCampground = (req, res, next) => {
   }
   next();
 };
-
-
 
 router.get('/', catchAsync(async (req,res)=>{
     const campgrounds = await Campground.find({})
@@ -59,6 +51,5 @@ router.delete('/:id', catchAsync(async(req, res)=>{
     await Campground.findByIdAndDelete(id);
     res.redirect('/campgrounds')
 }))
-
 
 module.exports = router;

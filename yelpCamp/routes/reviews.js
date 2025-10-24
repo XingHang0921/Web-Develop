@@ -1,17 +1,11 @@
 const express = require('express')
-const router = express.Router();
-const path = require('path')
-const mongoose = require('mongoose')
-
-const methodOverride = require('method-override')
-
+const router = express.Router({mergeParams:true});
 const Campground = require('../models/campGround')
 const Review = require('../models/review.js')
 
 const ejsMate = require('ejs-mate')
 const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
-const Joi = require('joi')
 const {reviewSchema} = require('../schemas.js')
 
 const validateReview = (req, res, next) =>{
