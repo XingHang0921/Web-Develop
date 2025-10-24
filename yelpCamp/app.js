@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate')
 const session = require('express-session')
 const ExpressError = require('./utils/ExpressError')
+const flash = require('connect-flash')
 mongoose.connect('mongodb://localhost:27017/yelpCamp')
 
 const campgrounds = require('./routes/campgrounds')
@@ -24,6 +25,7 @@ app.set('views', path.join(__dirname,'views'))
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')))
+app.use(flash());
 
 const seesionConfig = {
     secret:'thisisthetopsecret!',
@@ -36,7 +38,10 @@ const seesionConfig = {
     }
 }
 app.use(session(seesionConfig))
-
+app.use((req, res, next) =>{
+    res.locals.success = req.flash('success')
+    next();
+})
 app.use('/campgrounds', campgrounds)
 app.use('/campgrounds/:id/reviews', reviews)
 
