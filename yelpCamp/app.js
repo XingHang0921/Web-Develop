@@ -32,7 +32,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')))
 
-const seesionConfig = {
+const sessionConfig = {
   secret: "thisisthetopsecret!",
   resave: false,
   saveUninitialized: true,
@@ -43,7 +43,7 @@ const seesionConfig = {
   },
 };
 
-app.use(session(seesionConfig));
+app.use(session(sessionConfig));
 app.use(flash());
 
 app.use(passport.initialize())
