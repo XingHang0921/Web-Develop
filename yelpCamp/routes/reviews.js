@@ -3,7 +3,6 @@ const router = express.Router({mergeParams:true});
 const Campground = require('../models/campGround')
 const Review = require('../models/review.js')
 
-const ejsMate = require('ejs-mate')
 const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
 const {reviewSchema} = require('../schemas.js')
