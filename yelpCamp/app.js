@@ -65,12 +65,6 @@ app.use('/', userRoute)
 app.use('/campgrounds', campgroundsRoute)
 app.use('/campgrounds/:id/reviews', reviewsRoute)
 
-app.get('/fakeUser', async (req, res)=>{
-    const user = new User({email:'nevin@gmail.com', username:'nevinn'})
-    const newUser = await User.register(user,'chicken')
-    res.send(newUser)
-})
-
 app.get('/', (req,res)=>{
     res.render('campgrounds/home')
 })
