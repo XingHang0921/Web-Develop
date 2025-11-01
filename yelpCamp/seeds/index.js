@@ -18,13 +18,14 @@ const seedDB = async()=>{
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
-            author: '69038dbc5e11e46ef0db581d',
-            title: `${sample(descriptors)} ${sample(places)}`,
-            location: `${cities[random1000].city}, ${cities[random1000].state}`,
-            image: `https://picsum.photos/400?random=${Math.random()}`,
-            description:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure aliquid officiis asperiores numquam esse architecto ipsum natus! Neque illum ea nihil debitis delectus corrupti, modi quas, voluptatem rerum in excepturi?",
-            price,
-        })
+          author: "69063c000c437e705db13737",
+          title: `${sample(descriptors)} ${sample(places)}`,
+          location: `${cities[random1000].city}, ${cities[random1000].state}`,
+          image: `https://picsum.photos/400?random=${Math.random()}`,
+          description:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure aliquid officiis asperiores numquam esse architecto ipsum natus! Neque illum ea nihil debitis delectus corrupti, modi quas, voluptatem rerum in excepturi?",
+          price,
+        });
         await camp.save();
     }
     console.log('seeeding complete')
