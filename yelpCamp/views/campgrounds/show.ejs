@@ -16,7 +16,6 @@
             <% if(currentUser && campground.author.equals(currentUser._id)) { %>
                 <div class="card-body">           
                     <a href="/campgrounds/<%=campground.id%>/edit" class="card-link btn btn-info">Edit</a>
-                    <!-- <a href="/campgrounds" class="card-link btn btn-info">All Campground</a>                 -->
                     <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
                             <button class="btn btn-danger">Delete</button>
                     </form>     
@@ -51,6 +50,7 @@
                                 </h2>
                                 <p class="card-text">Comment: <%=review.body%>
                                 </p>
+                <p class="list-group-item">By <%= review.user ? review.author.username : 'deleted user'%></p>
                         <form class="d-inline" action="/campgrounds/<%=campground._id%>/reviews/<%=review.id%>?_method=DELETE" method="POST">
                             <button class="btn btn-sm btn-danger">Delete</button>
 
