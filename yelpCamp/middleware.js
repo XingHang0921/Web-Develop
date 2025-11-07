@@ -2,6 +2,7 @@ const ExpressError = require('./utils/ExpressError')
 const {campgroundSchema} = require('./schemas.js');
 const Campground = require('./models/campGround')
 const {reviewSchema} = require('./schemas.js');
+const Review = require('./models/review.js')
 
 module.exports.validateReview = (req, res, next) =>{
     const {error} = reviewSchema.validate(req.body);
