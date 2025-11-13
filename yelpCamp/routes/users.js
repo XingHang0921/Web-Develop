@@ -7,9 +7,7 @@ const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError');
 const { storeReturnTo } = require('../middleware');
 
-router.get('/register', (req,res)=>{
-    res.render('users/register')
-})
+router.get('/register', user.registerPage)
 
 router.post('/register',catchAsync(async(req,res)=>{
     try {
