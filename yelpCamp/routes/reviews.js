@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router({mergeParams:true});
-const Review = require('../models/review.js')
 
 const catchAsync = require('../utils/catchAsync')
 const { isLoggedIn,validateReview, isReviewAuthor } = require('../middleware.js');
