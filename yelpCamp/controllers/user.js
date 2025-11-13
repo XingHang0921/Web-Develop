@@ -3,6 +3,10 @@ module.exports.registerPage = (req,res)=>{
     res.render('users/register')
 }
 
+module.exports.renderUserPage = (req, res)=>{
+    res.render('users/login')
+}
+
 module.exports.registerUser = async(req,res)=>{
     try {
         const {email, username, password} = req.body;
