@@ -10,30 +10,14 @@ router.get('/', catchAsync(campground.index))
 
 router.get('/new',isLoggedIn, campground.newPage)
 
-router.post('/', validateCampground, catchAsync(async (req,res)=>{
-    const campground = new Campground(req.body.campground)
-    campground.author = req.user._id;
-    await campground.save()
-    req.flash('success', 'Successfully made a new Campground!')
-    res.redirect(`campgrounds/${campground._id}`)
-}))
+router.post('/', validateCampground, catchAsync(campground.createCampground))
 
 router.get('/:id', catchAsync(campground.showPage))
 
 router.get('/:id/edit', isLoggedIn , isAuthor,catchAsync(campground.editPage))
 
-router.put('/:id', validateCampground, isLoggedIn, isAuthor, catchAsync(async (req, res) => {
-    const {id} = req.params;
-    const campground = await Campground.findByIdAndUpdate(id,{...req.body.campground})
-    req.flash('success', 'Successfully updated the Campground')
-    res.redirect(`/campgrounds/${campground._id}`)
-}))
+router.put('/:id', validateCampground, isLoggedIn, isAuthor, catchAsync(campground.updateCampground))
 
-router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async(req, res)=>{
-    const {id} = req.params;
-    await Campground.findByIdAndDelete(id);
-    req.flash("success", "Sucessfully delete a Campground");
-    res.redirect('/campgrounds')
-}))
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(campground.deleteCampground))
 
 module.exports = router;

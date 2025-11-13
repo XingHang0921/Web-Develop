@@ -9,6 +9,21 @@ module.exports.newPage = (req, res) =>{
     res.render('campgrounds/new')
 }
 
+module.exports.createCampground = async (req,res)=>{
+    const campground = new Campground(req.body.campground)
+    campground.author = req.user._id;
+    await campground.save()
+    req.flash('success', 'Successfully made a new Campground!')
+    res.redirect(`campgrounds/${campground._id}`)
+}
+
+module.exports.updateCampground = async (req, res) => {
+    const {id} = req.params;
+    const campground = await Campground.findByIdAndUpdate(id,{...req.body.campground})
+    req.flash('success', 'Successfully updated the Campground')
+    res.redirect(`/campgrounds/${campground._id}`)
+}
+
 module.exports.showPage = async (req,res)=>{
     const campground = await Campground.findById(req.params.id)
     .populate({
@@ -30,4 +45,11 @@ module.exports.editPage = async(req, res)=>{
       return res.redirect("/campgrounds");
     }
     res.render('campgrounds/edit',{campground})
+}
+
+module.exports.deleteCampground = async(req, res)=>{
+    const {id} = req.params;
+    await Campground.findByIdAndDelete(id);
+    req.flash("success", "Sucessfully delete a Campground");
+    res.redirect('/campgrounds')
 }
