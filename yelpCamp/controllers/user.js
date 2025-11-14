@@ -26,6 +26,9 @@ module.exports.registerUser = async(req,res)=>{
     }    
 }
 
+module.exports.renderLoginPage = (req, res)=>{
+    res.render('users/login')
+}
 module.exports.login = (req,res)=>{
     req.flash('success','welcome back')
     const redirectUrl = res.locals.returnTo || '/campgrounds'
