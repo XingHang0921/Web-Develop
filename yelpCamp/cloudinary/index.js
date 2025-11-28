@@ -8,12 +8,17 @@ cloudinary.config({
 })
 
 const storage = new CloudinaryStorage({
-     cloudinary,
-     folder:'YelpCamp',
-     allowedFormats:['jpeg','png','jpg']
-})
+    cloudinary,
+    params:{
+        folder: 'YelpCamp',
+        allowed_formats: ['jpeg', 'png', 'jpg']
+    }
+    
+});
 
 module.exports = {
     cloudinary,
     storage
 }
+
+// dont have dotenv and .env file
