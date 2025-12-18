@@ -3,7 +3,7 @@ const Campground = require('../models/campGround')
 const cities = require('./cities')
 const {descriptors, places} = require('./seedHelpers')
 
-mongoose.connect('mongodb://localhost:27017/yelpCamp')
+mongoose.connect('mongodb://localhost:27017/yelpCamp_MapTiler')
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console,'connection error: '))
@@ -18,7 +18,7 @@ const seedDB = async()=>{
         const random1000 = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 20) + 10;
         const camp = new Campground({
-          //labptop:
+          //labptop:69063c000c437e705db13737
           author: "69063c000c437e705db13737",
           title: `${sample(descriptors)} ${sample(places)}`,
           location: `${cities[random1000].city}, ${cities[random1000].state}`,

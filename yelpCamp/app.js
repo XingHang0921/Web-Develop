@@ -1,5 +1,5 @@
 if(process.env.NODE_ENV !== "production"){
-    require('dotenv').config()
+    require('dotenv').config({quiet:true});
 }
 
 const express = require('express');
@@ -56,7 +56,6 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-
 app.use((req, res, next) =>{
     if (!req.session.returnTo) req.session.returnTo = req.originalUrl;
     res.locals.currentUser = req.user;
@@ -68,6 +67,7 @@ app.use((req, res, next) =>{
 app.use('/', userRoute)
 app.use('/campgrounds', campgroundsRoute)
 app.use('/campgrounds/:id/reviews', reviewsRoute)
+
 
 app.get('/', (req,res)=>{
     res.render('campgrounds/home')
