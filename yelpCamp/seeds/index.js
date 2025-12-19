@@ -3,7 +3,7 @@ const Campground = require('../models/campGround')
 const cities = require('./cities')
 const {descriptors, places} = require('./seedHelpers')
 
-mongoose.connect('mongodb://localhost:27017/yelpCamp_MapTiler')
+mongoose.connect('mongodb://localhost:27017/yelpCamp')
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console,'connection error: '))
@@ -22,6 +22,13 @@ const seedDB = async()=>{
           author: "69063c000c437e705db13737",
           title: `${sample(descriptors)} ${sample(places)}`,
           location: `${cities[random1000].city}, ${cities[random1000].state}`,
+          geometry: {
+              type: "Point",
+              coordinates: [
+                  cities[random1000].longitude,
+                  cities[random1000].latitude,
+              ]
+          },
           images: [
             {
               url: "https://res.cloudinary.com/dd9x0c5zo/image/upload/v1764365361/YelpCamp/khtijklgbccacve9o5tg.png",
