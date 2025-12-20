@@ -19,6 +19,7 @@ const campgroundsRoute = require('./routes/campgrounds')
 const reviewsRoute = require('./routes/reviews')
 const userRoute = require('./routes/users');
 const mongoSanitize = require('express-mongo-sanitize');
+const { name } = require('ejs');
 
 mongoose.connect("mongodb://localhost:27017/yelpCamp");
 const db = mongoose.connection;
@@ -42,14 +43,16 @@ app.use(
   })
 );
 const sessionConfig = {
-  secret: "thisisthetopsecret!",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    httpOnly: true,
-    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-  },
+    name:'session',
+    secret: "thisisthetopsecret!",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        // secure:true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
 };
 
 app.use(session(sessionConfig));
