@@ -18,7 +18,7 @@ const User = require('./models/user.js')
 const campgroundsRoute = require('./routes/campgrounds')
 const reviewsRoute = require('./routes/reviews')
 const userRoute = require('./routes/users');
-const ExpressMongoSanitize = require('express-mongo-sanitize');
+const mongoSanitize = require('express-mongo-sanitize');
 
 mongoose.connect("mongodb://localhost:27017/yelpCamp");
 const db = mongoose.connection;
@@ -36,8 +36,11 @@ app.set('views', path.join(__dirname,'views'))
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')))
-    app.use(ExpressMongoSanitize)
-
+app.use(
+  mongoSanitize({
+    replaceWith: "_",
+  })
+);
 const sessionConfig = {
   secret: "thisisthetopsecret!",
   resave: false,
@@ -59,22 +62,23 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) =>{
-    console.log(req.query)
+    console.log("locals middleware ran");
     if (!req.session.returnTo) req.session.returnTo = req.originalUrl;
-    res.locals.currentUser = req.user;
+    res.locals.currentUser = req.user || null;
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     next();
 })
 
+
+
 app.use('/', userRoute)
 app.use('/campgrounds', campgroundsRoute)
 app.use('/campgrounds/:id/reviews', reviewsRoute)
 
-
-app.get('/', (req,res)=>{
-    res.render('campgrounds/home')
-})
+app.get("/", (req, res) => {
+  res.render("campgrounds/home");
+});
 
 app.all(/(.*)/,(req, res, next) =>{
     next(new ExpressError('Page Not Found', 404))
