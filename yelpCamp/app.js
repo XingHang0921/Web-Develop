@@ -19,7 +19,8 @@ const campgroundsRoute = require('./routes/campgrounds')
 const reviewsRoute = require('./routes/reviews')
 const userRoute = require('./routes/users');
 const mongoSanitize = require('express-mongo-sanitize');
-const { name } = require('ejs');
+const helmet = require('helmet')
+
 
 mongoose.connect("mongodb://localhost:27017/yelpCamp");
 const db = mongoose.connection;
@@ -37,8 +38,13 @@ app.set('views', path.join(__dirname,'views'))
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')))
-    app.use(ExpressMongoSanitize) 
 
+
+app.use(
+  mongoSanitize({
+    replaceWith: "_",
+  })
+);
 const sessionConfig = {
     name:'session',
     secret: "thisisthetopsecret!",
@@ -54,6 +60,45 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(helmet())
+
+const scriptSrcUrls = [
+    "https://stackpath.bootstrapcdn.com/",
+    "https://cdnjs.cloudflare.com/",
+    "https://cdn.jsdelivr.net",
+    "https://cdn.maptiler.com/",
+];
+const styleSrcUrls = [
+    "https://stackpath.bootstrapcdn.com/",
+    "https://cdn.jsdelivr.net",
+    "https://cdn.maptiler.com/", 
+];
+const connectSrcUrls = [
+    "https://api.maptiler.com/",
+    "https://github.com/XingHang0921/",
+];
+app.use(
+    helmet.contentSecurityPolicy({
+        directives:{
+            defaultSrc:[],
+            connectSrc:["'self'", ...connectSrcUrls],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc:["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc:["'self'", "blob:"],
+            objectSrc:[],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/dd9x0c5zo/",
+                "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/",
+                "https://cdn.worldvectorlogo.com/logos/",
+                "https://www.maptiler.com/",
+                "https://api.maptiler.com/",
+                "https://assets.streamlinehq.com/image/private/",
+            ]
+        }
+    }))
 
 app.use(passport.initialize())
 app.use(passport.session());
