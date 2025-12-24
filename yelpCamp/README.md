@@ -1,1 +1,0 @@
-A full-stack web application providing a platform for campers to share and catalog their camping experiences.
